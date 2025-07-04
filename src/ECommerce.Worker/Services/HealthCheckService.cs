@@ -18,7 +18,6 @@ public class HealthCheckService : IHealthCheck
     {
         try
         {
-            // Check if the worker is responsive
             await Task.Delay(100, cancellationToken);
 
             _logger.LogDebug("Health check passed");

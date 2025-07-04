@@ -13,5 +13,6 @@ namespace ECommerce.Application.Services.Interface
     {
         Task<ApiResponse<OrderResponse>> CreateOrderAsync(CreateOrderRequest request, string correlationId);
         Task<ApiResponse<List<OrderResponse>>> GetOrdersByUserIdAsync(string userId, string correlationId);
+        Task<ApiResponse<OrderResponse>> GetOrderByIdAsync(string orderId, string correlationId);
     }
 }

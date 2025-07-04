@@ -8,6 +8,7 @@ using ECommerce.Core.Events;
 using ECommerce.Core.Interfaces.Common;
 using ECommerce.Shared.Constants;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace ECommerce.Application.Services
 {
@@ -68,7 +69,7 @@ namespace ECommerce.Application.Services
                         PaymentMethod = order.PaymentMethod,
                         CreatedAt = order.CreatedAt
                     };
-
+                    
                     await _messagePublisher.PublishAsync(orderEvent, QueueNames.ORDER_PLACED);
 
                     var cacheKey = string.Format(CacheKeys.USER_ORDERS, request.UserId);
@@ -135,7 +136,55 @@ namespace ECommerce.Application.Services
                     "An error occurred while retrieving orders. Please try again later.");
             }
         }
+        public async Task<ApiResponse<OrderResponse>> GetOrderByIdAsync(string orderId, string correlationId)
+        {
+            try
+            {
+                _logger.LogInformation("Retrieving order {OrderId}. CorrelationId: {CorrelationId}",
+                    orderId, correlationId);
 
+                if (!Guid.TryParse(orderId, out var orderGuid))
+                {
+                    return ApiResponse<OrderResponse>.ErrorResponse("Invalid order ID format");
+                }
+
+                var cacheKey = $"order_{orderGuid}";
+                var cachedOrder = await _cacheService.GetAsync<OrderResponse>(cacheKey);
+
+                if (cachedOrder != null)
+                {
+                    _logger.LogDebug("Order retrieved from cache for order {OrderId}. CorrelationId: {CorrelationId}",
+                        orderId, correlationId);
+                    return ApiResponse<OrderResponse>.SuccessResponse(cachedOrder);
+                }
+
+                var order = await _unitOfWork.Orders.GetByIdAsync(orderGuid);
+                if (order == null)
+                {
+                    _logger.LogWarning("Order {OrderId} not found. CorrelationId: {CorrelationId}",
+                        orderId, correlationId);
+                    return ApiResponse<OrderResponse>.ErrorResponse("Order not found");
+                }
+
+                var orderResponse = MapToOrderResponse(order);
+
+                var cacheExpiry = TimeSpan.FromMinutes(5);
+                await _cacheService.SetAsync(cacheKey, orderResponse, cacheExpiry);
+
+                _logger.LogInformation("Order {OrderId} retrieved successfully. CorrelationId: {CorrelationId}",
+                    orderId, correlationId);
+
+                return ApiResponse<OrderResponse>.SuccessResponse(orderResponse);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving order {OrderId}. CorrelationId: {CorrelationId}",
+                    orderId, correlationId);
+
+                return ApiResponse<OrderResponse>.ErrorResponse(
+                    "An error occurred while retrieving the order. Please try again later.");
+            }
+        }
         private static ApiResponse<OrderResponse> ValidateOrderRequest(CreateOrderRequest request)
         {
             var errors = new List<string>();

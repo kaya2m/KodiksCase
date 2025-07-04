@@ -1,0 +1,766 @@
+[2025-07-04 13:14:28.958 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:29.265 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order Processing Worker started and listening for messages {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:29.275 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Worker is now listening for messages on queue: order-placed {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:29.275 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Received order processing message: d4f81fec-fcf9-4254-9316-3b4b6879df41 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:29.278 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:29.278 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:29.278 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:30.223 +03:00 INF] StackExchange.Redis.IConnectionMultiplexer: Redis connection established successfully {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:30.230 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Processing order "00000000-0000-0000-0000-000000000000" for user  {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.096 +03:00 ERR] Microsoft.EntityFrameworkCore.Database.Connection: An error occurred using the connection to database 'ecommerce_dev_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.117 +03:00 ERR] Microsoft.EntityFrameworkCore.Query: An exception occurred while iterating over the results of a query for context type 'ECommerce.Infrastructure.Data.ECommerceDbContext'.
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:31.316 +03:00 ERR] ECommerce.Application.Services.OrderProcessingService: Error processing order "00000000-0000-0000-0000-000000000000" {"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Repositories.OrderRepository.GetByIdAsync(Guid id) in C:\Projects\KodiksCase\src\ECommerce.Infrastructure\Repositories\OrderRepository.cs:line 30
+   at ECommerce.Application.Services.OrderProcessingService.ProcessOrderAsync(OrderPlacedEvent orderEvent) in C:\Projects\KodiksCase\src\ECommerce.Application\Services\OrderProcessingService.cs:line 32
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:31.349 +03:00 ERR] Microsoft.EntityFrameworkCore.Database.Connection: An error occurred using the connection to database 'ecommerce_dev_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.352 +03:00 ERR] Microsoft.EntityFrameworkCore.Query: An exception occurred while iterating over the results of a query for context type 'ECommerce.Infrastructure.Data.ECommerceDbContext'.
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:31.474 +03:00 ERR] ECommerce.Application.Services.OrderProcessingService: Error updating order status after processing failure for order "00000000-0000-0000-0000-000000000000" {"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Repositories.OrderRepository.GetByIdAsync(Guid id) in C:\Projects\KodiksCase\src\ECommerce.Infrastructure\Repositories\OrderRepository.cs:line 30
+   at ECommerce.Application.Services.OrderProcessingService.ProcessOrderAsync(OrderPlacedEvent orderEvent) in C:\Projects\KodiksCase\src\ECommerce.Application\Services\OrderProcessingService.cs:line 88
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:31.480 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order "00000000-0000-0000-0000-000000000000" processed successfully. Total processed: 1 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.482 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Received order processing message: 0fd367c5-baae-4934-a43e-2acfb73d986d {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.483 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Processing order "00000000-0000-0000-0000-000000000000" for user  {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.551 +03:00 ERR] Microsoft.EntityFrameworkCore.Database.Connection: An error occurred using the connection to database 'ecommerce_dev_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.565 +03:00 ERR] Microsoft.EntityFrameworkCore.Query: An exception occurred while iterating over the results of a query for context type 'ECommerce.Infrastructure.Data.ECommerceDbContext'.
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:31.685 +03:00 ERR] ECommerce.Application.Services.OrderProcessingService: Error processing order "00000000-0000-0000-0000-000000000000" {"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Repositories.OrderRepository.GetByIdAsync(Guid id) in C:\Projects\KodiksCase\src\ECommerce.Infrastructure\Repositories\OrderRepository.cs:line 30
+   at ECommerce.Application.Services.OrderProcessingService.ProcessOrderAsync(OrderPlacedEvent orderEvent) in C:\Projects\KodiksCase\src\ECommerce.Application\Services\OrderProcessingService.cs:line 32
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:31.701 +03:00 ERR] Microsoft.EntityFrameworkCore.Database.Connection: An error occurred using the connection to database 'ecommerce_dev_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.703 +03:00 ERR] Microsoft.EntityFrameworkCore.Query: An exception occurred while iterating over the results of a query for context type 'ECommerce.Infrastructure.Data.ECommerceDbContext'.
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:31.829 +03:00 ERR] ECommerce.Application.Services.OrderProcessingService: Error updating order status after processing failure for order "00000000-0000-0000-0000-000000000000" {"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Repositories.OrderRepository.GetByIdAsync(Guid id) in C:\Projects\KodiksCase\src\ECommerce.Infrastructure\Repositories\OrderRepository.cs:line 30
+   at ECommerce.Application.Services.OrderProcessingService.ProcessOrderAsync(OrderPlacedEvent orderEvent) in C:\Projects\KodiksCase\src\ECommerce.Application\Services\OrderProcessingService.cs:line 88
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:31.834 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order "00000000-0000-0000-0000-000000000000" processed successfully. Total processed: 2 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.835 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Received order processing message: 2d401d5e-f56c-4922-aa1e-defdcd93bd3b {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.838 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Processing order "00000000-0000-0000-0000-000000000000" for user  {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.887 +03:00 ERR] Microsoft.EntityFrameworkCore.Database.Connection: An error occurred using the connection to database 'ecommerce_dev_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:31.889 +03:00 ERR] Microsoft.EntityFrameworkCore.Query: An exception occurred while iterating over the results of a query for context type 'ECommerce.Infrastructure.Data.ECommerceDbContext'.
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:32.013 +03:00 ERR] ECommerce.Application.Services.OrderProcessingService: Error processing order "00000000-0000-0000-0000-000000000000" {"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Repositories.OrderRepository.GetByIdAsync(Guid id) in C:\Projects\KodiksCase\src\ECommerce.Infrastructure\Repositories\OrderRepository.cs:line 30
+   at ECommerce.Application.Services.OrderProcessingService.ProcessOrderAsync(OrderPlacedEvent orderEvent) in C:\Projects\KodiksCase\src\ECommerce.Application\Services\OrderProcessingService.cs:line 32
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:32.027 +03:00 ERR] Microsoft.EntityFrameworkCore.Database.Connection: An error occurred using the connection to database 'ecommerce_dev_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:32.029 +03:00 ERR] Microsoft.EntityFrameworkCore.Query: An exception occurred while iterating over the results of a query for context type 'ECommerce.Infrastructure.Data.ECommerceDbContext'.
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:32.162 +03:00 ERR] ECommerce.Application.Services.OrderProcessingService: Error updating order status after processing failure for order "00000000-0000-0000-0000-000000000000" {"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Repositories.OrderRepository.GetByIdAsync(Guid id) in C:\Projects\KodiksCase\src\ECommerce.Infrastructure\Repositories\OrderRepository.cs:line 30
+   at ECommerce.Application.Services.OrderProcessingService.ProcessOrderAsync(OrderPlacedEvent orderEvent) in C:\Projects\KodiksCase\src\ECommerce.Application\Services\OrderProcessingService.cs:line 88
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:32.166 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order "00000000-0000-0000-0000-000000000000" processed successfully. Total processed: 3 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:32.168 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Received order processing message: be27624a-e222-4b09-a09b-0eb4b12670cd {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:32.168 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Processing order "00000000-0000-0000-0000-000000000000" for user  {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:32.182 +03:00 ERR] Microsoft.EntityFrameworkCore.Database.Connection: An error occurred using the connection to database 'ecommerce_dev_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:32.184 +03:00 ERR] Microsoft.EntityFrameworkCore.Query: An exception occurred while iterating over the results of a query for context type 'ECommerce.Infrastructure.Data.ECommerceDbContext'.
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:32.341 +03:00 ERR] ECommerce.Application.Services.OrderProcessingService: Error processing order "00000000-0000-0000-0000-000000000000" {"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Repositories.OrderRepository.GetByIdAsync(Guid id) in C:\Projects\KodiksCase\src\ECommerce.Infrastructure\Repositories\OrderRepository.cs:line 30
+   at ECommerce.Application.Services.OrderProcessingService.ProcessOrderAsync(OrderPlacedEvent orderEvent) in C:\Projects\KodiksCase\src\ECommerce.Application\Services\OrderProcessingService.cs:line 32
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:32.356 +03:00 ERR] Microsoft.EntityFrameworkCore.Database.Connection: An error occurred using the connection to database 'ecommerce_dev_db' on server 'tcp://localhost:5432'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:32.359 +03:00 ERR] Microsoft.EntityFrameworkCore.Query: An exception occurred while iterating over the results of a query for context type 'ECommerce.Infrastructure.Data.ECommerceDbContext'.
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:32.482 +03:00 ERR] ECommerce.Application.Services.OrderProcessingService: Error updating order status after processing failure for order "00000000-0000-0000-0000-000000000000" {"Application":"ECommerce.Worker","Environment":"Development"}
+Npgsql.PostgresException (0x80004005): 3D000: database "ecommerce_dev_db" does not exist
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at ECommerce.Infrastructure.Repositories.OrderRepository.GetByIdAsync(Guid id) in C:\Projects\KodiksCase\src\ECommerce.Infrastructure\Repositories\OrderRepository.cs:line 30
+   at ECommerce.Application.Services.OrderProcessingService.ProcessOrderAsync(OrderPlacedEvent orderEvent) in C:\Projects\KodiksCase\src\ECommerce.Application\Services\OrderProcessingService.cs:line 88
+  Exception data:
+    Severity: FATAL
+    SqlState: 3D000
+    MessageText: database "ecommerce_dev_db" does not exist
+    File: postinit.c
+    Line: 948
+    Routine: InitPostgres
+[2025-07-04 13:14:32.487 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order "00000000-0000-0000-0000-000000000000" processed successfully. Total processed: 4 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:14:59.284 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 4, Last activity: "2025-07-04T10:14:32.4870459Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:15:29.296 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 4, Last activity: "2025-07-04T10:14:32.4870459Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:15:59.302 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 4, Last activity: "2025-07-04T10:14:32.4870459Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:16:18.296 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:16:18.488 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order Processing Worker started and listening for messages {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:16:18.495 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Worker is now listening for messages on queue: order-placed {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:16:18.498 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:16:18.498 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:16:18.498 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:16:48.498 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:17:18.507 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:17:48.511 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:18:18.516 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:18:48.525 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:19:18.529 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:19:48.531 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:20:18.535 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:20:48.547 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:21:18.560 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:16:48.4978206Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:21:19.485 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Received order processing message: f0af7e56-763d-4c36-bb06-69669805858f {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:21:19.949 +03:00 INF] StackExchange.Redis.IConnectionMultiplexer: Redis connection established successfully {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:21:19.955 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Processing order "00000000-0000-0000-0000-000000000000" for user  {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:21:20.897 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (48ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o.id, o.created_at, o.payment_method, o.product_id, o.quantity, o.status, o.updated_at, o.user_id
+FROM orders AS o
+WHERE o.id = @__get_Item_0
+LIMIT 1 {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:21:20.915 +03:00 WRN] ECommerce.Application.Services.OrderProcessingService: Order "00000000-0000-0000-0000-000000000000" not found for processing {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:21:20.916 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order "00000000-0000-0000-0000-000000000000" processed successfully. Total processed: 1 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:21:48.569 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:22:18.584 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:22:48.594 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:23:18.598 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:23:48.600 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:24:18.607 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:24:48.616 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:25:18.615 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:25:48.626 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:26:18.641 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:21:20.9160800Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:26:42.897 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:26:43.097 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order Processing Worker started and listening for messages {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:26:43.106 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Worker is now listening for messages on queue: order-placed {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:26:43.108 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:26:43.109 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:26:43.109 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:30:03.410 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:30:03.745 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order Processing Worker started and listening for messages {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:30:03.756 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Worker is now listening for messages on queue: order-placed {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:30:03.759 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:30:03.759 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:30:03.760 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:30:33.758 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:30:33.7579979Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:31:03.772 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:30:33.7579979Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:31:30.513 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:31:30.778 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order Processing Worker started and listening for messages {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:31:30.790 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Worker is now listening for messages on queue: order-placed {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:31:30.793 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:31:30.793 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:31:30.793 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:32:00.788 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:32:00.7881418Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:32:30.805 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:32:00.7881418Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:32:36.221 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:32:40.993 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:33:40.062 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:34:01.164 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:34:01.405 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order Processing Worker started and listening for messages {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:34:01.414 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Worker is now listening for messages on queue: order-placed {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:34:01.416 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:34:01.416 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:34:01.416 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:34:31.412 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:34:31.4117700Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:35:01.420 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:34:31.4117700Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:35:31.427 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:34:31.4117700Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:36:01.441 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:34:31.4117700Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:36:31.449 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:34:31.4117700Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:37:00.170 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Received order processing message: 2aa77b6e-81ae-459e-a508-f9bec944d953 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:37:02.337 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:34:31.4117700Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:38:43.361 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: seriliazie edlilen mesaj {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:38:43.364 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: serlizaie edildikten onra orderevent {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:38:43.364 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 0, Last activity: "2025-07-04T10:34:31.4117700Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:38:43.887 +03:00 INF] StackExchange.Redis.IConnectionMultiplexer: Redis connection established successfully {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:38:43.891 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Processing order "00000000-0000-0000-0000-000000000000" for user  {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:38:45.010 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (50ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o.id, o.created_at, o.payment_method, o.product_id, o.quantity, o.status, o.updated_at, o.user_id
+FROM orders AS o
+WHERE o.id = @__get_Item_0
+LIMIT 1 {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:38:45.028 +03:00 WRN] ECommerce.Application.Services.OrderProcessingService: Order "00000000-0000-0000-0000-000000000000" not found for processing {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:38:45.029 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order "00000000-0000-0000-0000-000000000000" processed successfully. Total processed: 1 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:00.666 +03:00 INF] : Starting Order Processing Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:00.899 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order Processing Worker started and listening for messages {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:00.907 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Worker is now listening for messages on queue: order-placed {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:00.910 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:00.910 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:00.910 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.Worker {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:07.022 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Received order processing message: d983bc98-1541-4a27-9613-a85084405fb6 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:09.714 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: seriliazie edlilen mesaj {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:10.696 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: serlizaie edildikten onra orderevent {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:13.026 +03:00 INF] StackExchange.Redis.IConnectionMultiplexer: Redis connection established successfully {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:13.410 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Processing order "91493176-9cd7-41b7-ab85-2b277ba2852c" for user user789 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:14.172 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (40ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o.id, o.created_at, o.payment_method, o.product_id, o.quantity, o.status, o.updated_at, o.user_id
+FROM orders AS o
+WHERE o.id = @__get_Item_0
+LIMIT 1 {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:14.339 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (11ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?', @p12='?' (DbType = Guid), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = Int32), @p9='?', @p10='?' (DbType = DateTime), @p11='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO order_processing_logs (id, message, order_id, processed_at, status)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+UPDATE orders SET created_at = @p5, payment_method = @p6, product_id = @p7, quantity = @p8, status = @p9, updated_at = @p10, user_id = @p11
+WHERE id = @p12; {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:19.394 +03:00 DBG] ECommerce.Infrastructure.Services.RedisCacheService: Successfully cached value for key order_processed_91493176-9cd7-41b7-ab85-2b277ba2852c {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:19.398 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?', @p12='?' (DbType = Guid), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = Int32), @p9='?', @p10='?' (DbType = DateTime), @p11='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO order_processing_logs (id, message, order_id, processed_at, status)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+UPDATE orders SET created_at = @p5, payment_method = @p6, product_id = @p7, quantity = @p8, status = @p9, updated_at = @p10, user_id = @p11
+WHERE id = @p12; {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:19.402 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Sending notification for order "91493176-9cd7-41b7-ab85-2b277ba2852c" to user user789 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:19.408 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO order_processing_logs (id, message, order_id, processed_at, status)
+VALUES (@p0, @p1, @p2, @p3, @p4); {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:19.409 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Notification sent successfully for order "91493176-9cd7-41b7-ab85-2b277ba2852c" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:19.409 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Order "91493176-9cd7-41b7-ab85-2b277ba2852c" processed successfully for user user789. Redis log: processed at 2025-07-04 10:39:19 UTC {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:27.558 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order "91493176-9cd7-41b7-ab85-2b277ba2852c" processed successfully. Total processed: 1 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:39:30.917 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:40:00.917 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:40:30.925 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:41:00.927 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:41:30.932 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:42:00.936 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:42:30.938 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:43:00.943 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:43:30.956 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:44:00.959 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:44:30.962 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:45:05.092 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:45:05.152 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Received order processing message: bca299ee-bd40-46ce-8767-d573e4bc7fe9 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:45:09.720 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Processing order "583f88de-8fcf-450e-bc7a-a9b14d07b209" for user user789 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:45:10.428 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (8ms) [Parameters=[@__get_Item_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o.id, o.created_at, o.payment_method, o.product_id, o.quantity, o.status, o.updated_at, o.user_id
+FROM orders AS o
+WHERE o.id = @__get_Item_0
+LIMIT 1 {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:45:48.978 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:45:56.908 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (19ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?', @p12='?' (DbType = Guid), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = Int32), @p9='?', @p10='?' (DbType = DateTime), @p11='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO order_processing_logs (id, message, order_id, processed_at, status)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+UPDATE orders SET created_at = @p5, payment_method = @p6, product_id = @p7, quantity = @p8, status = @p9, updated_at = @p10, user_id = @p11
+WHERE id = @p12; {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:18.480 +03:00 DBG] ECommerce.Infrastructure.Services.RedisCacheService: Successfully cached value for key order_processed_583f88de-8fcf-450e-bc7a-a9b14d07b209 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:24.349 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 1, Last activity: "2025-07-04T10:39:26.4101468Z" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:30.694 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?', @p12='?' (DbType = Guid), @p5='?' (DbType = DateTime), @p6='?', @p7='?', @p8='?' (DbType = Int32), @p9='?', @p10='?' (DbType = DateTime), @p11='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO order_processing_logs (id, message, order_id, processed_at, status)
+VALUES (@p0, @p1, @p2, @p3, @p4);
+UPDATE orders SET created_at = @p5, payment_method = @p6, product_id = @p7, quantity = @p8, status = @p9, updated_at = @p10, user_id = @p11
+WHERE id = @p12; {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:31.171 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Sending notification for order "583f88de-8fcf-450e-bc7a-a9b14d07b209" to user user789 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:31.188 +03:00 INF] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (16ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = Guid), @p3='?' (DbType = DateTime), @p4='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO order_processing_logs (id, message, order_id, processed_at, status)
+VALUES (@p0, @p1, @p2, @p3, @p4); {"EventId":{"Id":20101,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted"},"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:31.189 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Notification sent successfully for order "583f88de-8fcf-450e-bc7a-a9b14d07b209" {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:32.083 +03:00 INF] ECommerce.Application.Services.OrderProcessingService: Order "583f88de-8fcf-450e-bc7a-a9b14d07b209" processed successfully for user user789. Redis log: processed at 2025-07-04 10:46:06 UTC {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:36.462 +03:00 INF] ECommerce.Worker.Services.OrderProcessingWorker: Order "583f88de-8fcf-450e-bc7a-a9b14d07b209" processed successfully. Total processed: 2 {"Application":"ECommerce.Worker","Environment":"Development"}
+[2025-07-04 13:46:54.349 +03:00 DBG] ECommerce.Worker.Services.OrderProcessingWorker: Worker heartbeat - Total processed: 2, Last activity: "2025-07-04T10:46:36.2088563Z" {"Application":"ECommerce.Worker","Environment":"Development"}

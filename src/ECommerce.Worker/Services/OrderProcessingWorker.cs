@@ -1,5 +1,4 @@
-﻿using ECommerce.Application.Services;
-using ECommerce.Application.Services.Interface;
+﻿using ECommerce.Application.Services.Interface;
 using ECommerce.Core.Events;
 using ECommerce.Shared.Constants;
 using RabbitMQ.Client;
@@ -15,6 +14,8 @@ public class OrderProcessingWorker : BackgroundService
     private readonly ILogger<OrderProcessingWorker> _logger;
     private readonly IConnection _connection;
     private readonly IModel _channel;
+    private static int _totalProcessedMessages = 0;
+    private static DateTime _lastActivity = DateTime.UtcNow;
 
     public OrderProcessingWorker(
         IServiceProvider serviceProvider,
@@ -47,7 +48,7 @@ public class OrderProcessingWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("Order Processing Worker started");
+        _logger.LogInformation("Order Processing Worker started and listening for messages");
 
         var consumer = new EventingBasicConsumer(_channel);
 
@@ -55,10 +56,11 @@ public class OrderProcessingWorker : BackgroundService
         {
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
+            var messageId = ea.BasicProperties?.MessageId ?? Guid.NewGuid().ToString();
 
             try
             {
-                _logger.LogInformation("Received order processing message: {Message}", message);
+                _logger.LogInformation("Received order processing message: {MessageId}", messageId);
 
                 var orderEvent = JsonSerializer.Deserialize<OrderPlacedEvent>(message);
                 if (orderEvent != null)
@@ -69,7 +71,12 @@ public class OrderProcessingWorker : BackgroundService
                     await orderProcessingService.ProcessOrderAsync(orderEvent);
 
                     _channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
-                    _logger.LogInformation("Order {OrderId} processed successfully", orderEvent.OrderId);
+
+                    Interlocked.Increment(ref _totalProcessedMessages);
+                    _lastActivity = DateTime.UtcNow;
+
+                    _logger.LogInformation("Order {OrderId} processed successfully. Total processed: {Total}",
+                        orderEvent.OrderId, _totalProcessedMessages);
                 }
                 else
                 {
@@ -79,8 +86,7 @@ public class OrderProcessingWorker : BackgroundService
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error processing order message: {Message}", message);
-
+                _logger.LogError(ex, "Error processing order message {MessageId}: {Message}", messageId, message);
                 _channel.BasicNack(deliveryTag: ea.DeliveryTag, multiple: false, requeue: true);
             }
         };
@@ -90,16 +96,32 @@ public class OrderProcessingWorker : BackgroundService
             autoAck: false,
             consumer: consumer);
 
+        _logger.LogInformation("Worker is now listening for messages on queue: {QueueName}", QueueNames.ORDER_PLACED);
+
         while (!stoppingToken.IsCancellationRequested)
         {
-            await Task.Delay(1000, stoppingToken);
+            try
+            {
+                await Task.Delay(30000, stoppingToken);
+                _logger.LogDebug("Worker heartbeat - Total processed: {Total}, Last activity: {LastActivity}",
+                    _totalProcessedMessages, _lastActivity);
+            }
+            catch (OperationCanceledException)
+            {
+                _logger.LogInformation(" Worker stopping due to cancellation request");
+                break;
+            }
         }
     }
 
     public override void Dispose()
     {
+        _logger.LogInformation(" Disposing Order Processing Worker...");
         _channel?.Dispose();
         _connection?.Dispose();
         base.Dispose();
     }
+
+    public static int TotalProcessedMessages => _totalProcessedMessages;
+    public static DateTime LastActivity => _lastActivity;
 }

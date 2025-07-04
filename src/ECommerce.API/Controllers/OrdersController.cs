@@ -79,6 +79,9 @@ public class OrdersController : BaseController
 
         LogInformation(_logger, "Get order request received for order {OrderId}", orderId);
 
-        return NotFoundResponse<OrderResponse>("Order", orderId);
+        var correlationId = GetCorrelationId();
+        var result = await _orderService.GetOrderByIdAsync(orderId, correlationId);
+
+        return HandleServiceResult(result);
     }
 }
