@@ -13,7 +13,8 @@ public class OrderProcessingLogConfiguration : IEntityTypeConfiguration<OrderPro
 {
     public void Configure(EntityTypeBuilder<OrderProcessingLog> builder)
     {
-        builder.HasKey(e => e.Id);
+         builder.ToTable("order_processing_logs");
+    builder.HasKey(e => e.Id);
 
         builder.Property(e => e.Id)
             .HasDefaultValueSql("gen_random_uuid()");

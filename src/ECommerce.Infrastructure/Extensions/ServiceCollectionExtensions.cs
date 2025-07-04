@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace ECommerce.Infrastructure.Extensions;
 
@@ -20,6 +19,7 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<ECommerceDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            options.UseSnakeCaseNamingConvention();
             options.EnableSensitiveDataLogging(false);
             options.EnableDetailedErrors(false);
         });
@@ -30,7 +30,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IOrderProcessingLogRepository, OrderProcessingLogRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-        services.AddScoped<IMessagePublisher, RabbitMQPublisher>();
+        services.AddTransient<IMessagePublisher, RabbitMQPublisher>();
 
         return services;
     }
@@ -38,11 +38,6 @@ public static class ServiceCollectionExtensions
     private static void AddRedisCacheServices(IServiceCollection services, IConfiguration configuration)
     {
         var redisConnectionString = configuration.GetConnectionString("Redis");
-        services.AddStackExchangeRedisCache(options =>
-        {
-            options.Configuration = redisConnectionString;
-            options.InstanceName = "ECommerceAPI";
-        });
 
         services.AddSingleton<IConnectionMultiplexer>(serviceProvider =>
         {
@@ -50,12 +45,19 @@ public static class ServiceCollectionExtensions
 
             try
             {
+                if (string.IsNullOrEmpty(redisConnectionString))
+                {
+                    logger?.LogWarning("Redis connection string is empty, using default localhost:6379");
+                    redisConnectionString = "localhost:6379";
+                }
+
                 var configurationOptions = ConfigurationOptions.Parse(redisConnectionString);
 
                 configurationOptions.AbortOnConnectFail = false;
                 configurationOptions.ConnectRetry = 3;
                 configurationOptions.ConnectTimeout = 5000;
                 configurationOptions.SyncTimeout = 5000;
+                configurationOptions.AsyncTimeout = 5000;
                 configurationOptions.ReconnectRetryPolicy = new ExponentialRetry(5000);
                 configurationOptions.KeepAlive = 180;
 
@@ -71,15 +73,43 @@ public static class ServiceCollectionExtensions
                     logger?.LogInformation("Redis connection restored");
                 };
 
+                logger?.LogInformation("Redis connection established successfully");
                 return multiplexer;
             }
             catch (Exception ex)
             {
                 logger?.LogError(ex, "Failed to connect to Redis: {ConnectionString}", redisConnectionString);
-                throw;
+                throw new InvalidOperationException($"Redis connection failed: {ex.Message}", ex);
             }
         });
 
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = redisConnectionString ?? "localhost:6379";
+            options.InstanceName = "ECommerceAPI";
+        });
+
         services.AddScoped<ICacheService, RedisCacheService>();
+    }
+    private static IConnectionMultiplexer CreateMockConnection()
+    {
+        var mockOptions = new ConfigurationOptions
+        {
+            AbortOnConnectFail = false,
+            ConnectRetry = 0,
+            ConnectTimeout = 1000
+        };
+
+        try
+        {
+            return ConnectionMultiplexer.Connect("localhost:6379", opt =>
+            {
+                opt.AbortOnConnectFail = false;
+            });
+        }
+        catch
+        {
+            throw new InvalidOperationException("Redis connection could not be established. Please ensure Redis is running.");
+        }
     }
 }

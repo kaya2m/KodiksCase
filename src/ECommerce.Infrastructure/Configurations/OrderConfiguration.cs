@@ -14,6 +14,7 @@ namespace ECommerce.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
+            builder.ToTable("orders");
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Id)

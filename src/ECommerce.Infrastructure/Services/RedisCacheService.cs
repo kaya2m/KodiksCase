@@ -2,12 +2,7 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace ECommerce.Infrastructure.Services
 {
@@ -15,29 +10,56 @@ namespace ECommerce.Infrastructure.Services
     {
         private readonly IDistributedCache _cache;
         private readonly ILogger<RedisCacheService> _logger;
-        private readonly IConnectionMultiplexer _connectionMultiplexer;
-        private readonly IDatabase _database;
+        private readonly IConnectionMultiplexer? _connectionMultiplexer;
+        private readonly IDatabase? _database;
+        private readonly bool _isRedisAvailable;
 
         public RedisCacheService(
             IDistributedCache cache,
             ILogger<RedisCacheService> logger,
-            IConnectionMultiplexer connectionMultiplexer)
+            IConnectionMultiplexer? connectionMultiplexer = null)
         {
             _cache = cache;
             _logger = logger;
             _connectionMultiplexer = connectionMultiplexer;
-            _database = _connectionMultiplexer.GetDatabase();
+
+            try
+            {
+                _database = _connectionMultiplexer?.GetDatabase();
+                _isRedisAvailable = _connectionMultiplexer?.IsConnected ?? false;
+
+                if (!_isRedisAvailable)
+                {
+                    _logger.LogWarning("Redis connection is not available. Cache operations will be skipped.");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to initialize Redis database connection");
+                _isRedisAvailable = false;
+            }
         }
 
         public async Task<T?> GetAsync<T>(string key) where T : class
         {
+            if (!_isRedisAvailable)
+            {
+                _logger.LogDebug("Redis not available, skipping cache get for key {Key}", key);
+                return null;
+            }
+
             try
             {
                 var cachedValue = await _cache.GetStringAsync(key);
                 if (string.IsNullOrEmpty(cachedValue))
                     return null;
 
-                return JsonSerializer.Deserialize<T>(cachedValue);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
+
+                return JsonSerializer.Deserialize<T>(cachedValue, options);
             }
             catch (Exception ex)
             {
@@ -48,15 +70,29 @@ namespace ECommerce.Infrastructure.Services
 
         public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null) where T : class
         {
+            if (!_isRedisAvailable)
+            {
+                _logger.LogDebug("Redis not available, skipping cache set for key {Key}", key);
+                return;
+            }
+
             try
             {
-                var serializedValue = JsonSerializer.Serialize(value);
-                var options = new DistributedCacheEntryOptions();
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
+
+                var serializedValue = JsonSerializer.Serialize(value, options);
+                var cacheOptions = new DistributedCacheEntryOptions();
 
                 if (expiry.HasValue)
-                    options.SetAbsoluteExpiration(expiry.Value);
+                    cacheOptions.SetAbsoluteExpiration(expiry.Value);
+                else
+                    cacheOptions.SetAbsoluteExpiration(TimeSpan.FromMinutes(5)); // Default 5 minutes
 
-                await _cache.SetStringAsync(key, serializedValue, options);
+                await _cache.SetStringAsync(key, serializedValue, cacheOptions);
+                _logger.LogDebug("Successfully cached value for key {Key}", key);
             }
             catch (Exception ex)
             {
@@ -66,9 +102,16 @@ namespace ECommerce.Infrastructure.Services
 
         public async Task RemoveAsync(string key)
         {
+            if (!_isRedisAvailable)
+            {
+                _logger.LogDebug("Redis not available, skipping cache remove for key {Key}", key);
+                return;
+            }
+
             try
             {
                 await _cache.RemoveAsync(key);
+                _logger.LogDebug("Successfully removed cache for key {Key}", key);
             }
             catch (Exception ex)
             {
@@ -78,15 +121,29 @@ namespace ECommerce.Infrastructure.Services
 
         public async Task RemoveByPatternAsync(string pattern)
         {
+            if (!_isRedisAvailable || _database == null || _connectionMultiplexer == null)
+            {
+                _logger.LogDebug("Redis not available, skipping pattern remove for pattern {Pattern}", pattern);
+                return;
+            }
+
             try
             {
-                var server = _connectionMultiplexer.GetServer(_connectionMultiplexer.GetEndPoints().First());
+                var endPoints = _connectionMultiplexer.GetEndPoints();
+                if (endPoints.Length == 0)
+                {
+                    _logger.LogWarning("No Redis endpoints available for pattern removal");
+                    return;
+                }
+
+                var server = _connectionMultiplexer.GetServer(endPoints.First());
                 var keys = server.Keys(pattern: pattern);
 
                 var keyArray = keys.ToArray();
                 if (keyArray.Length > 0)
                 {
                     await _database.KeyDeleteAsync(keyArray);
+                    _logger.LogDebug("Successfully removed {Count} keys matching pattern {Pattern}", keyArray.Length, pattern);
                 }
                 else
                 {
@@ -99,9 +156,13 @@ namespace ECommerce.Infrastructure.Services
             }
         }
 
-        #region Helper Mehods
         public async Task<bool> ExistsAsync(string key)
         {
+            if (!_isRedisAvailable || _database == null)
+            {
+                return false;
+            }
+
             try
             {
                 return await _database.KeyExistsAsync(key);
@@ -113,90 +174,9 @@ namespace ECommerce.Infrastructure.Services
             }
         }
 
-        public async Task<TimeSpan?> GetTtlAsync(string key)
-        {
-            try
-            {
-                return await _database.KeyTimeToLiveAsync(key);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error getting TTL for key {Key}", key);
-                return null;
-            }
-        }
-
-        public async Task<bool> SetIfNotExistsAsync<T>(string key, T value, TimeSpan? expiry = null) where T : class
-        {
-            try
-            {
-                var serializedValue = JsonSerializer.Serialize(value);
-                var result = await _database.StringSetAsync(key, serializedValue, expiry, When.NotExists);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error setting value if not exists for key {Key}", key);
-                return false;
-            }
-        }
-
-        public async Task<long> IncrementAsync(string key, long value = 1, TimeSpan? expiry = null)
-        {
-            try
-            {
-                var result = await _database.StringIncrementAsync(key, value);
-
-                if (expiry.HasValue)
-                    await _database.KeyExpireAsync(key, expiry.Value);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error incrementing key {Key}", key);
-                return 0;
-            }
-        }
-
-        public async Task<double> IncrementAsync(string key, double value, TimeSpan? expiry = null)
-        {
-            try
-            {
-                var result = await _database.StringIncrementAsync(key, value);
-
-                if (expiry.HasValue)
-                    await _database.KeyExpireAsync(key, expiry.Value);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error incrementing key {Key}", key);
-                return 0;
-            }
-        }
-
-        public async Task<IEnumerable<string>> GetKeysByPatternAsync(string pattern)
-        {
-            try
-            {
-                var server = _connectionMultiplexer.GetServer(_connectionMultiplexer.GetEndPoints().First());
-                var keys = server.Keys(pattern: pattern);
-                return keys.Select(k => k.ToString());
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error getting keys by pattern {Pattern}", pattern);
-                return Enumerable.Empty<string>();
-            }
-        }
-
         public void Dispose()
         {
-            _connectionMultiplexer?.Dispose();
+        
         }
-        #endregion
     }
 }

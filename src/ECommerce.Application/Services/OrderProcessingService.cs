@@ -37,7 +37,7 @@ public class OrderProcessingService : IOrderProcessingService
             }
 
             order.Status = OrderStatus.Processing;
-             await  _unitOfWork.Orders.UpdateAsync(order);
+            await _unitOfWork.Orders.UpdateAsync(order);
 
             var processingLog = new OrderProcessingLog
             {
@@ -46,38 +46,38 @@ public class OrderProcessingService : IOrderProcessingService
                 Message = "Order processing started"
             };
             await _unitOfWork.OrderProcessingLogs.CreateAsync(processingLog);
-
             await _unitOfWork.CompleteAsync();
 
             await Task.Delay(TimeSpan.FromSeconds(5));
 
-            var redisKey = $"order_processed_{order.Id}";
-            var redisValue = new
-            {
-                OrderId = order.Id,
-                ProcessedAt = DateTime.UtcNow,
-                Status = "Processed"
-            };
+            var redisLogKey = $"order_processed_{order.Id}";
+            var processedTimestamp = DateTime.UtcNow;
+            var redisLogValue = $"processed at {processedTimestamp:yyyy-MM-dd HH:mm:ss UTC}";
 
-            await _cacheService.SetAsync(redisKey, redisValue, TimeSpan.FromHours(24));
+            await _cacheService.SetAsync(redisLogKey, new
+            {
+                Message = redisLogValue,
+                OrderId = order.Id,
+                ProcessedAt = processedTimestamp,
+                Status = "Processed"
+            }, TimeSpan.FromHours(24));
 
             order.Status = OrderStatus.Processed;
-             await  _unitOfWork.Orders.UpdateAsync(order);
+            await _unitOfWork.Orders.UpdateAsync(order);
 
             var completionLog = new OrderProcessingLog
             {
                 OrderId = order.Id,
                 Status = "Processed",
-                Message = $"Order processed successfully at {DateTime.UtcNow}"
+                Message = $"Order processed successfully at {processedTimestamp}"
             };
             await _unitOfWork.OrderProcessingLogs.CreateAsync(completionLog);
-
             await _unitOfWork.CompleteAsync();
 
             await SendNotificationAsync(order);
 
-            _logger.LogInformation("Order {OrderId} processed successfully for user {UserId}",
-                order.Id, order.UserId);
+            _logger.LogInformation("Order {OrderId} processed successfully for user {UserId}. Redis log: {RedisLog}",
+                order.Id, order.UserId, redisLogValue);
         }
         catch (Exception ex)
         {

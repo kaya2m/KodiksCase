@@ -19,10 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
+	  <PackageReference Include="EFCore.NamingConventions" Version="8.0.0" />
   </ItemGroup>
 
   <PropertyGroup>

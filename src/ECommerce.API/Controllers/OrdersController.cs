@@ -79,8 +79,6 @@ public class OrdersController : BaseController
 
         LogInformation(_logger, "Get order request received for order {OrderId}", orderId);
 
-        // This would require a new service method
-        // For now, we'll return a placeholder
         return NotFoundResponse<OrderResponse>("Order", orderId);
     }
 }
