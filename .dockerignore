@@ -1,0 +1,41 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Tests
+**/TestResults/
+**/*Tests/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Build outputs
+**/bin/
+**/obj/
+**/logs/
+**/TestResults/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Package files
+*.nupkg
+*.snupkg 

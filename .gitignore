@@ -1,0 +1,9 @@
+.vs/
+*.vsidx
+*.user
+bin/
+obj/
+*.suo
+*.sln.docstates
+packages/
+ 

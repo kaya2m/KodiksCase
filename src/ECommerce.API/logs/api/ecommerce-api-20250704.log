@@ -1,0 +1,97 @@
+[2025-07-04 02:31:56.677 +03:00 INF] : Starting E-Commerce API {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:56.995 +03:00 INF] Microsoft.Hosting.Lifetime: Now listening on: https://localhost:7078 {"EventId":{"Id":14,"Name":"ListeningOnAddress"},"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:56.998 +03:00 INF] Microsoft.Hosting.Lifetime: Now listening on: http://localhost:5232 {"EventId":{"Id":14,"Name":"ListeningOnAddress"},"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:57.150 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:57.151 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:57.151 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.API {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:57.153 +03:00 INF] : ===  E-Commerce API Started === {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:57.153 +03:00 INF] : Environment: Development {"Application":"ECommerce.API"}
+[2025-07-04 02:31:57.153 +03:00 INF] : Version: v1.2.0 {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:57.153 +03:00 INF] : Swagger UI: http://localhost:8080 {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:31:57.153 +03:00 INF] : Health Check: http://localhost:8080/health {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:36:03.965 +03:00 INF] : Starting E-Commerce API {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:36:04.222 +03:00 ERR] Microsoft.Extensions.Hosting.Internal.Host: Hosting failed to start {"EventId":{"Id":11,"Name":"HostedServiceStartupFaulted"},"Application":"ECommerce.API","Environment":"Development"}
+System.IO.IOException: Failed to bind to address https://[::1]:7078: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+ ---> System.Net.Sockets.SocketException (10048): Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[2025-07-04 02:40:26.597 +03:00 INF] : Starting E-Commerce API {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 02:40:26.800 +03:00 ERR] Microsoft.Extensions.Hosting.Internal.Host: Hosting failed to start {"EventId":{"Id":11,"Name":"HostedServiceStartupFaulted"},"Application":"ECommerce.API","Environment":"Development"}
+System.IO.IOException: Failed to bind to address https://[::1]:7078: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+ ---> System.Net.Sockets.SocketException (10048): Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[2025-07-04 10:29:35.928 +03:00 ERR] : An error occurred while migrating the database {"Application":"ECommerce.API","Environment":"Development"}
+Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:5432
+ ---> System.Net.Sockets.SocketException (10061): Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı.
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.UnpooledDataSource.Get(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlDatabaseCreator.Exists(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlDatabaseCreator.Exists(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlDatabaseCreator.Exists()
+   at Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.Exists()
+   at Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.GetAppliedMigrations()
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.GetAppliedMigrations(DatabaseFacade databaseFacade)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.GetPendingMigrations(DatabaseFacade databaseFacade)
+   at ECommerce.API.Configuration.ApplicationBuilderExtensions.ApplyDatabaseMigrations(WebApplication app) in C:\Projects\KodiksCase\src\ECommerce.API\Configuration\ApplicationBuilderExtensions.cs:line 133
+[2025-07-04 10:29:36.087 +03:00 INF] : Starting E-Commerce API {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.330 +03:00 INF] Microsoft.Hosting.Lifetime: Now listening on: https://localhost:7078 {"EventId":{"Id":14,"Name":"ListeningOnAddress"},"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.332 +03:00 INF] Microsoft.Hosting.Lifetime: Now listening on: http://localhost:5232 {"EventId":{"Id":14,"Name":"ListeningOnAddress"},"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.449 +03:00 INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down. {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.449 +03:00 INF] Microsoft.Hosting.Lifetime: Hosting environment: Development {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.450 +03:00 INF] Microsoft.Hosting.Lifetime: Content root path: C:\Projects\KodiksCase\src\ECommerce.API {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.451 +03:00 INF] : ===  E-Commerce API Started === {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.451 +03:00 INF] : Environment: Development {"Application":"ECommerce.API"}
+[2025-07-04 10:29:36.452 +03:00 INF] : Version: v1.2.0 {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.452 +03:00 INF] : Swagger UI: http://localhost:8080 {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:36.452 +03:00 INF] : Health Check: http://localhost:8080/health {"Application":"ECommerce.API","Environment":"Development"}
+[2025-07-04 10:29:50.637 +03:00 INF] Microsoft.Hosting.Lifetime: Application is shutting down... {"Application":"ECommerce.API","Environment":"Development"}
