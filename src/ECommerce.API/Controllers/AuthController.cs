@@ -38,7 +38,7 @@ namespace ECommerce.API.Controllers
 
         [HttpPost("validate")]
         [ProducesResponseType(typeof(ApiResponse<object>), 200)]
-        [ProducesResponseType(typeof(ApiResponse<object>), 400)]
+        [ProducesResponseType(typeof(ApiResponse<object>), 401)]
         public async Task<IActionResult> ValidateToken([FromBody] ValidateTokenRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Token))
@@ -54,12 +54,12 @@ namespace ECommerce.API.Controllers
             }
             else
             {
-                return ErrorResponse<object>("Invalid token", null, 401);
+                return StatusCode(401, ErrorResponse<object>("Invalid token", null, 401));
             }
         }
-    }
-    public class ValidateTokenRequest
-    {
-        public string Token { get; set; } = string.Empty;
+        public class ValidateTokenRequest
+        {
+            public string Token { get; set; } = string.Empty;
+        }
     }
 }

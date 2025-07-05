@@ -1,9 +1,54 @@
-.vs/
-*.vsidx
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.staging
+
+# Test Results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# User specific files
 *.user
-bin/
-obj/
-*.suo
+*.userosscache
 *.sln.docstates
-packages/
- 
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Docker
+.dockerignore
+
+# IDE
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Artifacts
+artifacts/
+dist/
+
+# Kubernetes
+*.yaml.tmp
+secrets/
